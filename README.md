@@ -8,7 +8,7 @@ All you need to do to set this up, is move the built `FivePDEventManager.net.dll
 
 # Usage
 Get Vehicle Data:
-```
+```csharp
 TriggerEvent("FivePDEventManager:VehicleData:Get", Ped ped);
 EventHandlers["FivePDEventManager:VehicleData:Return"] += new Action<string, string, int, string, string, bool, bool, string, string, int, List<dynamic>>(VehicleData);
 public void VehicleData(string licensePlate, string flag, int ownerNetworkID, string ownerFirstName, string ownerLastName, bool insurance, bool registration, string color, string vehicleName, int vehicleID, List<dynamic> items)
@@ -18,7 +18,7 @@ public void VehicleData(string licensePlate, string flag, int ownerNetworkID, st
 ```
 
 Get Ped Data:
-```
+```csharp
 TriggerEvent("FivePDEventManager:PedData:Get", Ped ped);
 EventHandlers["FivePDEventManager:PedData:Return"] += new Action<string, string, string, string, string, double, bool[], string, int, string, List<dynamic>, List<Dynamic>>(PedData);
 public void PedData(string firstName, string lastName, string warrant, string license, string dob, double alcoholLevel, bool[] drugs, string gender, int age, string address, List<dynamic> items, List<Dynamic> violations)
@@ -28,7 +28,7 @@ public void PedData(string firstName, string lastName, string warrant, string li
 ```
 
 Get Duty Status:
-```
+```csharp
 TriggerEvent("FivePDEventManager:DutyStatus:Get");
 EventHandlers["FivePDEventManager:DutyStatus:Return"] += new Action<bool>(DutyStatus);
 public void DutyStatus(bool DutyStatus)
