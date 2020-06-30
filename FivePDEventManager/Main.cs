@@ -19,7 +19,7 @@ namespace FivePDEventManager
         {
             EventHandlers["FivePDEventManager:VehicleData:Get"] += new Action<Vehicle>(VehicleData);
             EventHandlers["FivePDEventManager:PedData:Get"] += new Action<Ped>(PedData);
-            EventHandlers["FivePDEventManager:DutyStatus:Get"] += new Action<string>(GetDutyStatus);
+            EventHandlers["FivePDEventManager:DutyStatus:Get"] += new Action(GetDutyStatus);
 
             Events.OnDutyStatusChange += updateDutyStatus;
         }
@@ -63,7 +63,7 @@ namespace FivePDEventManager
             TriggerEvent("FivePDEventManager:PedData:Return", firstName, lastName, warrant, license, dob, alcoholLevel, drugs, gender, age, address, items, violations);
         }
 
-        public void GetDutyStatus(string a)
+        public void GetDutyStatus()
         {
             TriggerEvent("FivePDEventManager:DutyStatus:Return", DutyStatus);
         }
