@@ -37,6 +37,9 @@
     <Reference Include="FivePD.net">
       <HintPath>..\..\..\..\Desktop\FivePD libs\FivePD.net.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\..\..\Desktop\FivePD libs\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
