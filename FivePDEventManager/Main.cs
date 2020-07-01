@@ -17,16 +17,16 @@ namespace FivePDEventManager
 
         public Main()
         {
-            EventHandlers["FivePDEventManager:VehicleData:Get"] += new Action<Vehicle>(VehicleData);
-            EventHandlers["FivePDEventManager:PedData:Get"] += new Action<Ped>(PedData);
+            EventHandlers["FivePDEventManager:VehicleData:Get"] += new Action<int>(VehicleData);
+            EventHandlers["FivePDEventManager:PedData:Get"] += new Action<int>(PedData);
             EventHandlers["FivePDEventManager:DutyStatus:Get"] += new Action(GetDutyStatus);
 
             Events.OnDutyStatusChange += updateDutyStatus;
         }
 
-        public async void VehicleData(Vehicle vehicle)
+        public async void VehicleData(int vehicle)
         {
-            dynamic data = await Utilities.GetVehicleData(vehicle.NetworkId);
+            dynamic data = await Utilities.GetVehicleData(vehicle);
 
             string licensePlate = data.LicensePlate;
             string flag = data.Flag;
@@ -43,9 +43,9 @@ namespace FivePDEventManager
             TriggerEvent("FivePDEventManager:VehicleData:Return", licensePlate, flag, ownerNetworkID, ownerFirstName, ownerLastName, insurance, registration, color, vehicleName, vehicleID, items);
         }
 
-        public async void PedData(Ped ped)
+        public async void PedData(int ped)
         {
-            dynamic data = await Utilities.GetPedData(ped.NetworkId);
+            dynamic data = await Utilities.GetPedData(ped);
 
             string firstName = data.FirstName;
             string lastName = data.LastName;
