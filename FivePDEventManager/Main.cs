@@ -7,6 +7,7 @@ using CitizenFX.Core;
 using CitizenFX.Core.Native;
 using static CitizenFX.Core.Native.API;
 using FivePD.API;
+using Newtonsoft.Json;
 using System.ComponentModel;
 
 namespace FivePDEventManager
@@ -40,7 +41,9 @@ namespace FivePDEventManager
             int vehicleID = data.ID;
             List<dynamic> items = data.Items;
 
-            TriggerEvent("FivePDEventManager:VehicleData:Return", licensePlate, flag, ownerNetworkID, ownerFirstName, ownerLastName, insurance, registration, color, vehicleName, vehicleID, items);
+            string itemsJson = JsonConvert.SerializeObject(items, Formatting.Indented);
+
+            TriggerEvent("FivePDEventManager:VehicleData:Return", licensePlate, flag, ownerNetworkID, ownerFirstName, ownerLastName, insurance, registration, color, vehicleName, vehicleID, itemsJson);
         }
 
         public async void PedData(int ped)
@@ -60,7 +63,10 @@ namespace FivePDEventManager
             List<dynamic> items = data.Items;
             List<dynamic> violations = data.Violations;
 
-            TriggerEvent("FivePDEventManager:PedData:Return", firstName, lastName, warrant, license, dob, alcoholLevel, drugs, gender, age, address, items, violations);
+            string itemsJson = JsonConvert.SerializeObject(items, Formatting.Indented);
+            string violationsJson = JsonConvert.SerializeObject(violations, Formatting.Indented);
+
+            TriggerEvent("FivePDEventManager:PedData:Return", firstName, lastName, warrant, license, dob, alcoholLevel, drugs, gender, age, address, itemsJson, violationsJson);
         }
 
         public void GetDutyStatus()
