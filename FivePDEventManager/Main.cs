@@ -29,44 +29,18 @@ namespace FivePDEventManager
         {
             dynamic data = await Utilities.GetVehicleData(vehicle);
 
-            string licensePlate = data.LicensePlate;
-            string flag = data.Flag;
-            int ownerNetworkID = data.OwnerNetworkID;
-            string ownerFirstName = data.OwnerFirstName;
-            string ownerLastName = data.OwnerLastName;
-            bool insurance = data.Insurance;
-            bool registration = data.Regustration;
-            string color = data.VehicleColor;
-            string vehicleName = data.VehicleName;
-            int vehicleID = data.ID;
-            List<dynamic> items = data.Items;
+            string dataJson = JsonConvert.SerializeObject(data, Formatting.Indented);
 
-            string itemsJson = JsonConvert.SerializeObject(items, Formatting.Indented);
-
-            TriggerEvent("FivePDEventManager:VehicleData:Return", licensePlate, flag, ownerNetworkID, ownerFirstName, ownerLastName, insurance, registration, color, vehicleName, vehicleID, itemsJson);
+            TriggerEvent("FivePDEventManager:PedData:Return", dataJson);
         }
 
         public async void PedData(int ped)
         {
             dynamic data = await Utilities.GetPedData(ped);
 
-            string firstName = data.FirstName;
-            string lastName = data.LastName;
-            string warrant = data.Warrant;
-            string license = data.License;
-            string dob = data.DOB;
-            double alcoholLevel = data.AlcoholLevel;
-            bool[] drugs = data.DrugsUsed;
-            string gender = data.Gender;
-            int age = data.Age;
-            string address = data.Address;
-            List<dynamic> items = data.Items;
-            List<dynamic> violations = data.Violations;
+            string dataJson = JsonConvert.SerializeObject(data, Formatting.Indented);
 
-            string itemsJson = JsonConvert.SerializeObject(items, Formatting.Indented);
-            string violationsJson = JsonConvert.SerializeObject(violations, Formatting.Indented);
-
-            TriggerEvent("FivePDEventManager:PedData:Return", firstName, lastName, warrant, license, dob, alcoholLevel, drugs, gender, age, address, itemsJson, violationsJson);
+            TriggerEvent("FivePDEventManager:PedData:Return", dataJson);
         }
 
         public void GetDutyStatus()
